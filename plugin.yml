@@ -1,0 +1,21 @@
+main: fatty.arbuckle.minecraft.Main
+name: Fatty.Arbuckle
+version: 0.1
+author: Fatty Arbuckle
+description: An test plugin
+commands:
+  ahoy:
+    description: A nautical hello message
+    usage: /ahoy
+    permission: myplugin.ahoy
+    permission-message: You don't have the myplugin.ahoy permission.
+  equip:
+    description: Turns the block you just left into lava
+    usage: /equip [player]
+    permission: myplugin.equip
+    permission-message: You don't have the myplugin.equip permission.
+  arrow:
+    description: Sets the arrow type
+    usage: /arrow [ normal | flaming | lightning ]
+    permission: myplugin.equip
+    permission-message: You don't have the myplugin.equip permission.
