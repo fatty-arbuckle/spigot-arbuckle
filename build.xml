@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Fatty.Arbuckle" default="makejar" basedir=".">
-    <target name="makejar" description="Create a jar for the project">
+
+    <exec executable="git" outputproperty="git.branch"
+          failifexecutionfails="false">
+        <arg line="rev-parse --abbrev-ref HEAD"/>
+    </exec>
+
+    <path id="classpath.base">
+        <fileset dir="../spigot/Spigot/Spigot-API/target/">
+            <include name="spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar" />
+        </fileset>
+    </path>
+
+    <target name="compile">
+        <javac srcdir="src" destdir="out" includes="**/*.java" target="1.7">
+            <classpath refid="classpath.base" />
+        </javac>
+
+    </target>
+
+    <target name="makejar" description="Create a jar for the project" depends="compile">
         <mkdir dir="target"></mkdir>
-        <jar destfile="target/${ant.project.name}.jar">
-            <fileset dir="bin"></fileset>
+        <jar destfile="target/${ant.project.name}-${git.branch}.jar">
+            <fileset dir="out/production/spigot-arbuckle"></fileset>
             <fileset file="plugin.yml"></fileset>
         </jar>
     </target>

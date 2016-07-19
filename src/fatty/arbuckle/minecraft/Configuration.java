@@ -13,6 +13,7 @@ public class Configuration {
 	private Map<String, ArrowType> playerArrowType = new HashMap<String, ArrowType>();
 
 	protected Configuration() {
+
 	}
 
 	public static Configuration getInstance() {
