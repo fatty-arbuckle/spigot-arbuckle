@@ -2,22 +2,35 @@ package fatty.arbuckle.minecraft.build;
 
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 
 import static fatty.arbuckle.minecraft.build.Drone.Direction.*;
 
 /**
  * Created by phatty on 7/21/16.
+ *
+ * * Drone always lives in its own compass orientation so forward is north
+ *
  */
 public class Drone {
 
     public enum Direction { NORTH, EAST, SOUTH, WEST, LOST }
 
+    // holds the start location in case we want to go back
     Location start = null;
+
+    // current location of the drone
+    Location current = null;
     Direction facing = NORTH;
 
     public Drone(Location loc) {
         start = loc;
+        current = start.clone();
         facing = setDirection(loc.getYaw());
+    }
+
+    public void setBlock(Material m) {
+        start.getWorld().getBlockAt(current).setType(m);
     }
 
     public Direction getDirection() {
@@ -53,70 +66,106 @@ public class Drone {
     protected Location forward(int blocks) {
         switch (facing) {
             case NORTH:
-                return incrX(blocks);
+                current = incrX(blocks);
+                break;
             case SOUTH:
-                return decrX(blocks);
+                current = decrX(blocks);
+                break;
             case EAST:
-                return incrZ(blocks);
+                current = incrZ(blocks);
+                break;
             case WEST:
-                return decrZ(blocks);
+                current = decrZ(blocks);
+                break;
+            default:
+                throw new IllegalStateException("Not facing any know direction!");
         }
-        throw new IllegalStateException("Not facing any know direction!");
+        return current;
     }
 
     public Location backward(int blocks) {
         switch (facing) {
             case NORTH:
-                return decrX(blocks);
+                current = decrX(blocks);
+                break;
             case SOUTH:
-                return incrX(blocks);
+                current = incrX(blocks);
+                break;
             case EAST:
-                return decrZ(blocks);
+                current = decrZ(blocks);
+                break;
             case WEST:
-                return incrZ(blocks);
+                current = incrZ(blocks);
+                break;
+            default:
+                throw new IllegalStateException("Not facing any know direction!");
         }
-        throw new IllegalStateException("Not facing any know direction!");
+        return current;
     }
 
     public Location left(int blocks) {
         switch (facing) {
             case NORTH:
-                return decrZ(blocks);
+                current = decrZ(blocks);
+                break;
             case SOUTH:
-                return incrZ(blocks);
+                current = incrZ(blocks);
+                break;
             case EAST:
-                return incrX(blocks);
+                current = incrX(blocks);
+                break;
             case WEST:
-                return decrX(blocks);
+                current = decrX(blocks);
+                break;
+            default:
+                throw new IllegalStateException("Not facing any know direction!");
         }
-        throw new IllegalStateException("Not facing any know direction!");
+        return current;
     }
 
     public Location right(int blocks) {
         switch (facing) {
             case NORTH:
-                return incrZ(blocks);
+                current = incrZ(blocks);
+                break;
             case SOUTH:
-                return decrZ(blocks);
+                current = decrZ(blocks);
+                break;
             case EAST:
-                return decrX(blocks);
+                current = decrX(blocks);
+                break;
             case WEST:
-                return incrX(blocks);
+                current = incrX(blocks);
+                break;
+            default:
+                throw new IllegalStateException("Not facing any know direction!");
         }
-        throw new IllegalStateException("Not facing any know direction!");
+        return current;
+    }
+
+    // TODO add unit tests
+    public Location up(int blocks) {
+        current = new Location(current.getWorld(), current.getX(), current.getY() + blocks, current.getZ(), current.getYaw(), current.getPitch());
+        return current;
+    }
+
+    // TODO add unit tests
+    public Location down(int blocks) {
+        current = new Location(current.getWorld(), current.getX(), current.getY() - blocks, current.getZ(), current.getYaw(), current.getPitch());
+        return current;
     }
 
     private Location incrX(int blocks) {
-        return new Location(start.getWorld(), start.getX() + blocks, start.getY(), start.getZ(), start.getYaw(), start.getPitch());
+        return new Location(current.getWorld(), current.getX() + blocks, current.getY(), current.getZ(), current.getYaw(), current.getPitch());
     }
     private Location decrX(int blocks) {
-        return new Location(start.getWorld(), start.getX() - blocks, start.getY(), start.getZ(), start.getYaw(), start.getPitch());
+        return new Location(current.getWorld(), current.getX() - blocks, current.getY(), current.getZ(), current.getYaw(), current.getPitch());
     }
     private Location incrZ(int blocks) {
-        return new Location(start.getWorld(), start.getX(), start.getY(), start.getZ() + blocks, start.getYaw(), start.getPitch());
+        return new Location(current.getWorld(), current.getX(), current.getY(), current.getZ() + blocks, current.getYaw(), current.getPitch());
     }
     private Location decrZ(int blocks) {
-        return new Location(start.getWorld(), start.getX(), start.getY(), start.getZ() - blocks, start.getYaw(), start.getPitch());
+        return new Location(current.getWorld(), current.getX(), current.getY(), current.getZ() - blocks, current.getYaw(), current.getPitch());
     }
 
 }

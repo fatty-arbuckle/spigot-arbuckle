@@ -104,14 +104,14 @@ public class DroneTest {
         assertEquals("Testing moving forward while facing north (X location)", loc1.getBlockX(), 15);
         assertEquals("Testing moving forward while facing north (Z location)", loc1.getBlockZ(), 10);
         Location loc2 = d.backward(5);
-        assertEquals("Testing moving backward while facing north (X location)", loc2.getBlockX(), 5);
+        assertEquals("Testing moving backward while facing north (X location)", loc2.getBlockX(), 10);
         assertEquals("Testing moving backward while facing north (Z location)", loc2.getBlockZ(), 10);
         Location loc3 = d.left(5);
         assertEquals("Testing moving left while facing north (X location)", loc3.getBlockX(), 10);
         assertEquals("Testing moving left while facing north (Z location)", loc3.getBlockZ(), 5);
         Location loc4 = d.right(5);
         assertEquals("Testing moving right while facing north (X location)", loc4.getBlockX(), 10);
-        assertEquals("Testing moving right while facing north (Z location)", loc4.getBlockZ(), 15);
+        assertEquals("Testing moving right while facing north (Z location)", loc4.getBlockZ(), 10);
     }
 
     @Test
@@ -121,14 +121,14 @@ public class DroneTest {
         assertEquals("Testing moving forward while facing south (X location)", loc1.getBlockX(), 5);
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 10);
         Location loc2 = d.backward(5);
-        assertEquals("Testing moving backward while facing south (X location)", loc2.getBlockX(), 15);
+        assertEquals("Testing moving backward while facing south (X location)", loc2.getBlockX(), 10);
         assertEquals("Testing moving backward while facing south (Z location)", loc2.getBlockZ(), 10);
         Location loc3 = d.left(5);
         assertEquals("Testing moving left while facing south (X location)", loc3.getBlockX(), 10);
         assertEquals("Testing moving left while facing south (Z location)", loc3.getBlockZ(), 15);
         Location loc4 = d.right(5);
         assertEquals("Testing moving right while facing south (X location)", loc4.getBlockX(), 10);
-        assertEquals("Testing moving right while facing south (Z location)", loc4.getBlockZ(), 5);
+        assertEquals("Testing moving right while facing south (Z location)", loc4.getBlockZ(), 10);
     }
 
     @Test
@@ -139,12 +139,12 @@ public class DroneTest {
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 15);
         Location loc2 = d.backward(5);
         assertEquals("Testing moving backward while facing south (X location)", loc2.getBlockX(), 10);
-        assertEquals("Testing moving backward while facing south (Z location)", loc2.getBlockZ(), 5);
+        assertEquals("Testing moving backward while facing south (Z location)", loc2.getBlockZ(), 10);
         Location loc3 = d.left(5);
         assertEquals("Testing moving left while facing south (X location)", loc3.getBlockX(), 15);
         assertEquals("Testing moving left while facing south (Z location)", loc3.getBlockZ(), 10);
         Location loc4 = d.right(5);
-        assertEquals("Testing moving right while facing south (X location)", loc4.getBlockX(), 5);
+        assertEquals("Testing moving right while facing south (X location)", loc4.getBlockX(), 10);
         assertEquals("Testing moving right while facing south (Z location)", loc4.getBlockZ(), 10);
     }
 
@@ -156,12 +156,12 @@ public class DroneTest {
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 5);
         Location loc2 = d.backward(5);
         assertEquals("Testing moving backward while facing south (X location)", loc2.getBlockX(), 10);
-        assertEquals("Testing moving backward while facing south (Z location)", loc2.getBlockZ(), 15);
+        assertEquals("Testing moving backward while facing south (Z location)", loc2.getBlockZ(), 10);
         Location loc3 = d.left(5);
         assertEquals("Testing moving left while facing south (X location)", loc3.getBlockX(), 5);
         assertEquals("Testing moving left while facing south (Z location)", loc3.getBlockZ(), 10);
         Location loc4 = d.right(5);
-        assertEquals("Testing moving right while facing south (X location)", loc4.getBlockX(), 15);
+        assertEquals("Testing moving right while facing south (X location)", loc4.getBlockX(), 10);
         assertEquals("Testing moving right while facing south (Z location)", loc4.getBlockZ(), 10);
     }
 }

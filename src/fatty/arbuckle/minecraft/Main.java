@@ -1,5 +1,6 @@
 package fatty.arbuckle.minecraft;
 
+import fatty.arbuckle.minecraft.commands.Build;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,6 +36,9 @@ public class Main extends JavaPlugin {
 
         } else if (command.getName().equalsIgnoreCase("arrow")) {
         	return Arrow.run(sender, label, args);
+
+        } else if (command.getName().equalsIgnoreCase("build")) {
+            return Build.run(sender, label, args);
 
         } else {
         	return false;

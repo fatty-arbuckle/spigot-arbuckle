@@ -17,5 +17,10 @@ commands:
   arrow:
     description: Sets the arrow type
     usage: /arrow [ normal | flaming | lightning ]
-    permission: myplugin.equip
-    permission-message: You don't have the myplugin.equip permission.
+    permission: myplugin.arrow
+    permission-message: You don't have the myplugin.arrow permission.
+  build:
+    description: Builds things
+    usage: /build [ wall [ length ] | ??? ]
+    permission: myplugin.build
+    permission-message: You don't have the myplugin.build permission.
