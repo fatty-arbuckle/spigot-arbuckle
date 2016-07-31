@@ -21,13 +21,19 @@ public class Build {
                 Location target = player.getTargetBlock((Set<Material>)null, 25).getLocation();
                 target.setYaw(player.getLocation().getYaw());  // does the block already have the right yaw?
 
+
+
+
                 // TODO handle wall vs other builds
-                //if (args[0] == "wall") {
-                    System.out.println("Building it here, boss.");
+                if (args[0].equalsIgnoreCase("wall")) {
+                    Integer length = new Integer(15);
+                    if (args.length >= 2) {
+                        length = new Integer(args[1]);
+                    }
 
                     // TODO get wall length as args[1]
-                    Wall.build(target, 10);
-                //}
+                    Wall.build(target, length);
+                }
 
                 return true;
             } else {
