@@ -3,6 +3,11 @@ package fatty.arbuckle.minecraft.build;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.event.hanging.HangingPlaceEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import static fatty.arbuckle.minecraft.build.Drone.Direction.*;
 
@@ -24,13 +29,59 @@ public class Drone {
     Direction facing = NORTH;
 
     public Drone(Location loc) {
-        start = loc;
+        start = loc.clone();
         current = start.clone();
         facing = setDirection(loc.getYaw());
     }
 
     public void setBlock(Material m) {
         start.getWorld().getBlockAt(current).setType(m);
+    }
+
+    public int buildToGround(Material m) {
+        setBlock(m);
+        Location tmp = current.clone();
+
+        int h = 1;
+
+        boolean liquid = true;
+        boolean empty = true;
+        boolean grassy = true;
+        while (empty || liquid || grassy) {
+            tmp.subtract(0, 1, 0);
+            Block b = start.getWorld().getBlockAt(tmp);
+
+            //new HangingPlaceEvent(hanging, player, b, face);
+
+ //           BlockFace face = b.getFace(b);
+
+   //         ItemStack foo = new ItemStack(Material.TORCH);
+     //       ItemMeta itemMeta = foo.getItemMeta();
+       //     itemMeta.
+
+            liquid = b.isLiquid();
+            empty = b.isEmpty();
+            grassy = b.getType() == Material.GRASS
+                    || b.getType() == Material.LONG_GRASS
+                    || b.getType() == Material.DOUBLE_PLANT
+                    || b.getType() == Material.RED_ROSE;
+
+            if (liquid || empty || grassy) {
+                b.setType(m);
+            } else {
+                System.out.println("Bottom block: " + b.toString());
+            }
+
+            if (empty || grassy) {
+                h++;
+            }
+        }
+
+        return h;
+    }
+
+    public Location getLocation() {
+        return current.clone();
     }
 
     public Direction getDirection() {
