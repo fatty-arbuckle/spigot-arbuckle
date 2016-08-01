@@ -23,7 +23,11 @@ public class BuildDat {
 
         for (int dx = 0; dx < data.getMaxX(); dx++) {
             for (int dz = 0; dz < data.getMaxY(); dz++) {
-                w.getBlockAt(x + dx, y, z + dz).setType(data.getMaterial(x+dx, z+dz));
+                try {
+                    w.getBlockAt(x + dx, y, z + dz).setType(data.getMaterial(x + dx, z + dz));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }

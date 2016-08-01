@@ -1,13 +1,10 @@
 package fatty.arbuckle.minecraft;
 
-import fatty.arbuckle.minecraft.commands.Build;
+import fatty.arbuckle.minecraft.commands.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fatty.arbuckle.minecraft.commands.Ahoy;
-import fatty.arbuckle.minecraft.commands.Arrow;
-import fatty.arbuckle.minecraft.commands.Equip;
 import fatty.arbuckle.minecraft.events.EventRegistration;
 
 public class Main extends JavaPlugin {
@@ -39,6 +36,9 @@ public class Main extends JavaPlugin {
 
         } else if (command.getName().equalsIgnoreCase("build")) {
             return Build.run(sender, label, args);
+
+        } else if (command.getName().equalsIgnoreCase("spawn")) {
+            return Spawn.run(sender, label, args);
 
         } else {
         	return false;

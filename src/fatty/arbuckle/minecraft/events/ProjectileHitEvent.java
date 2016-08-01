@@ -8,7 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.projectiles.ProjectileSource;
 
-// TODO: explosive arrows
 // TODO: tree arrows
 // TODO: Effect arrows? (https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html) getWorld().playEffect()
 
@@ -26,9 +25,13 @@ public class ProjectileHitEvent implements Listener {
                 arrowType = cfg.getArrowType(shooter.getName());
 
                 switch (arrowType) {
-                    case FLAMING:
-                        // TODO: lessen explosion?
+                    case EXPLODING:
                         arrow.getWorld().createExplosion(arrow.getLocation(), 1, true);
+                        break;
+
+                    case FLAMING:
+                        arrow.getWorld().createExplosion(arrow.getLocation(), (float)0.25, true);
+                        break;
 
                     case LIGHTNING:
                         arrow.setGlowing(false);

@@ -7,5 +7,6 @@ public class EventRegistration {
 	public EventRegistration(PluginManager pm, JavaPlugin plugin) {
 		pm.registerEvents(new ProjectileHitEvent(), plugin);
 		pm.registerEvents(new ProjectileLaunchEvent(), plugin);
+		pm.registerEvents(new EntitySpawnEvent(), plugin);
 	}
 }
