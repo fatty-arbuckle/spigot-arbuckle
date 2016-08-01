@@ -3,11 +3,13 @@ package fatty.arbuckle.minecraft.build;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.omg.CORBA.LocalObject;
 
 import static fatty.arbuckle.minecraft.build.Drone.Direction.*;
 
@@ -32,6 +34,25 @@ public class Drone {
         start = loc.clone();
         current = start.clone();
         facing = setDirection(loc.getYaw());
+    }
+
+    public void buildFromDat(Data dat) {
+        World w = start.getWorld();
+        Location checkpoint = current.clone();
+
+        for (int dFwd = dat.getMaxFwd() - 1; dFwd >= 0; dFwd--) {
+            for (int dSide = 0; dSide < dat.getMaxSide(); dSide++) {
+                current = checkpoint.clone();
+                forward(dat.getMaxFwd() - 1 - dFwd);
+                right(dSide);
+                Material m = dat.getMaterial(dFwd, dSide);
+                if (m != null) {
+                    w.getBlockAt(current).setType(m);
+                }
+            }
+        }
+
+        current = checkpoint.clone();
     }
 
     public void setBlock(Material m) {

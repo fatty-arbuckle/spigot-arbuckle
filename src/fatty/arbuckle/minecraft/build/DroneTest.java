@@ -99,7 +99,7 @@ public class DroneTest {
 
     @Test
     public void northFacingTest() {
-        Drone d = new Drone(new Location(null, 10, 10, 10, (float)270.0, 0));
+        Drone d = new Drone(new Location(null, 10, 10, 10, (float) 270.0, 0));
         Location loc1 = d.forward(5);
         assertEquals("Testing moving forward while facing north (X location)", loc1.getBlockX(), 15);
         assertEquals("Testing moving forward while facing north (Z location)", loc1.getBlockZ(), 10);
@@ -116,7 +116,7 @@ public class DroneTest {
 
     @Test
     public void southFacingTest() {
-        Drone d = new Drone(new Location(null, 10, 10, 10, (float)90.0, 0));
+        Drone d = new Drone(new Location(null, 10, 10, 10, (float) 90.0, 0));
         Location loc1 = d.forward(5);
         assertEquals("Testing moving forward while facing south (X location)", loc1.getBlockX(), 5);
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 10);
@@ -133,7 +133,7 @@ public class DroneTest {
 
     @Test
     public void eastFacingTest() {
-        Drone d = new Drone(new Location(null, 10, 10, 10, (float)0.0, 0));
+        Drone d = new Drone(new Location(null, 10, 10, 10, (float) 0.0, 0));
         Location loc1 = d.forward(5);
         assertEquals("Testing moving forward while facing south (X location)", loc1.getBlockX(), 10);
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 15);
@@ -150,7 +150,7 @@ public class DroneTest {
 
     @Test
     public void westFacingTest() {
-        Drone d = new Drone(new Location(null, 10, 10, 10, (float)180.0, 0));
+        Drone d = new Drone(new Location(null, 10, 10, 10, (float) 180.0, 0));
         Location loc1 = d.forward(5);
         assertEquals("Testing moving forward while facing south (X location)", loc1.getBlockX(), 10);
         assertEquals("Testing moving forward while facing south (Z location)", loc1.getBlockZ(), 5);

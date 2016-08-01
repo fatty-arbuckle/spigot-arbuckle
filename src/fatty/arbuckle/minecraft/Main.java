@@ -13,6 +13,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
 		// side-effects: registers all of the event listeners
 		new EventRegistration(getServer().getPluginManager(), this);
+
+        Configuration.getInstance().setDatDirectory(this.getDataFolder().getAbsolutePath());
     }
 
     @Override

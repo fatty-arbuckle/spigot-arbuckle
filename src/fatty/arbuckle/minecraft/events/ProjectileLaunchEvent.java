@@ -11,6 +11,11 @@ import fatty.arbuckle.minecraft.Configuration;
 import fatty.arbuckle.minecraft.Configuration.ArrowType;
 
 public class ProjectileLaunchEvent implements Listener {
+
+	public ProjectileLaunchEvent() {
+		System.out.println("Registering listener for ProjectileLaunchEvent");
+	}
+
 	@EventHandler
     public void onEvent(org.bukkit.event.entity.ProjectileLaunchEvent event)
     {
