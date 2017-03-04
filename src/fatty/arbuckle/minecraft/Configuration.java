@@ -7,7 +7,7 @@ public class Configuration {
 	private static Configuration instance = null;
 
 	public enum ArrowType {
-		NORMAL, FLAMING, LIGHTNING, TELEPORT, EXPLODING
+		NORMAL, FLAMING, LIGHTNING, TELEPORT, EXPLODING, TREE
 	}
 
 	private Map<String, ArrowType> playerArrowType = new HashMap<String, ArrowType>();

@@ -3,6 +3,7 @@ package fatty.arbuckle.minecraft.commands;
 import fatty.arbuckle.minecraft.build.BuildDat;
 import fatty.arbuckle.minecraft.build.Data;
 import fatty.arbuckle.minecraft.build.Wall;
+import fatty.arbuckle.minecraft.build.RandomChest;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -32,6 +33,9 @@ public class Build {
                     }
 
                     Wall.build(target, length);
+
+                } else if (args[0].equalsIgnoreCase("chest")) {
+                    RandomChest.build(player.getLocation(), target);
 
                 } else if (args[0].equalsIgnoreCase("fort")) {
                     Material [][] level00 = {

@@ -7,6 +7,9 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.TreeType;
+
+import java.util.Random;
 
 // TODO: tree arrows
 // TODO: Effect arrows? (https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html) getWorld().playEffect()
@@ -40,6 +43,12 @@ public class ProjectileHitEvent implements Listener {
 
                     case TELEPORT:
                         shooter.teleport(arrow.getLocation());
+                        break;
+
+										case TREE:
+												TreeType[] treeTypes = TreeType.values();
+												int tree = (new Random()).nextInt(treeTypes.length);
+                        arrow.getWorld().generateTree(arrow.getLocation(), treeTypes[tree]);
                         break;
                 }
             }
