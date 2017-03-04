@@ -14,13 +14,15 @@ import org.bukkit.projectiles.ProjectileSource;
 /**
  * Created by phatty on 7/31/16.
  */
-public class EntitySpawnEvent implements Listener {
+public class PlayerRespawnEvent implements Listener {
+
+    public PlayerRespawnEvent() {
+        System.out.println("Registering listener for PlayerRespawnEvent");
+    }
 
     @EventHandler
-    public void onEvent(org.bukkit.event.entity.EntitySpawnEvent event) {
-        Entity entity = event.getEntity();
-        if (entity instanceof Player) {
-            Equip.run((Player) entity, "", new String[]{});
-        }
+    public void onEvent(org.bukkit.event.player.PlayerRespawnEvent event) {
+        Entity entity = event.getPlayer();
+        Equip.run((Player) entity, "", new String[]{});
     }
 }

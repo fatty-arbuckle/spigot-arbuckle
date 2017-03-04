@@ -1,7 +1,8 @@
 package fatty.arbuckle.minecraft.commands;
 
-import fatty.arbuckle.minecraft.build.BuildDat;
+import fatty.arbuckle.minecraft.Configuration;
 import fatty.arbuckle.minecraft.build.Data;
+import fatty.arbuckle.minecraft.build.Drone;
 import fatty.arbuckle.minecraft.build.Wall;
 import fatty.arbuckle.minecraft.build.RandomChest;
 import org.bukkit.Location;
@@ -9,7 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.nio.file.Path;
 import java.util.Set;
+import java.util.Vector;
 
 import static org.bukkit.Material.AIR;
 import static org.bukkit.Material.STONE;
@@ -23,7 +26,7 @@ public class Build {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
 
-                Location target = player.getTargetBlock((Set<Material>)null, 25).getLocation();
+                Location target = player.getTargetBlock((Set<Material>)null, 25).getLocation().clone();
                 target.setYaw(player.getLocation().getYaw());  // does the block already have the right yaw?
 
                 if (args[0].equalsIgnoreCase("wall")) {
@@ -140,13 +143,27 @@ public class Build {
                             {STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE},
                             {STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE, STONE}
                     };
+                } else if (args[0].equalsIgnoreCase("dat")) {
 
-                    BuildDat.build(target, new Data(15,15, level00));
-                    BuildDat.build(target, new Data(15,15, level01));
-                    BuildDat.build(target, new Data(15,15, level02));
-                    BuildDat.build(target, new Data(15,15, level03));
-                    BuildDat.build(target, new Data(15,15, level04));
-                    BuildDat.build(target, new Data(15,15, level05));
+                    if (args.length >= 2) {
+                        String datThing = args[1];
+
+                        Drone d = new Drone(target);
+                        Path datPath = Configuration.getInstance().getDatData(datThing);
+
+                        try {
+                            Vector<Data> datData = Data.load(datPath);
+
+                            for (Data dat : datData) {
+                                d.buildFromDat(dat);
+                                d.up(1);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("build dat error: " + e.getMessage());
+                        }
+                    } else {
+                        return false;
+                    }
 
                 } else {
                     return false;

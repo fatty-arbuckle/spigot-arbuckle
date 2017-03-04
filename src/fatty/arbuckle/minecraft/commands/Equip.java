@@ -23,12 +23,10 @@ public class Equip {
 		addIfDoesnt(inventory, Material.BOW, 1);
 		addIfDoesnt(inventory, Material.DIAMOND_AXE, 1);
 		addIfDoesnt(inventory, Material.DIAMOND_PICKAXE, 1);
-		addIfDoesnt(inventory, Material.DIAMOND_HELMET, 1);
 		addIfDoesnt(inventory, Material.DIAMOND_SWORD, 1);
 		addIfDoesnt(inventory, Material.DIAMOND_SPADE, 1);
-		addIfDoesnt(inventory, Material.ARROW, 64);
-		addIfDoesnt(inventory, Material.ARROW, 64);
-		addIfDoesnt(inventory, Material.ARROW, 64);
+		inventory.addItem(new ItemStack(Material.ARROW, 64));
+		inventory.addItem(new ItemStack(Material.ARROW, 64));
 		addIfDoesnt(inventory, Material.COOKED_MUTTON, 64);
 
 		inventory.setHelmet(new ItemStack(Material.DIAMOND_HELMET));

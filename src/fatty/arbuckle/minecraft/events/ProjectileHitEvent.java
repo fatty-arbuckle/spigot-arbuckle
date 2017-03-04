@@ -11,7 +11,6 @@ import org.bukkit.TreeType;
 
 import java.util.Random;
 
-// TODO: tree arrows
 // TODO: Effect arrows? (https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html) getWorld().playEffect()
 
 public class ProjectileHitEvent implements Listener {
