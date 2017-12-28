@@ -1,6 +1,8 @@
 package fatty.arbuckle.minecraft.events;
 
 import fatty.arbuckle.minecraft.Configuration;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -31,6 +33,12 @@ public class ProjectileHitEvent implements Listener {
                         arrow.getWorld().createExplosion(arrow.getLocation(), 1, true);
                         break;
 
+                    case NUKE:
+//                        if ((new Random()).nextInt(50) == 42) {
+                            arrow.getWorld().createExplosion(arrow.getLocation(), 100, true);
+//                        }
+                        break;
+
                     case FLAMING:
                         arrow.getWorld().createExplosion(arrow.getLocation(), (float)0.25, true);
                         break;
@@ -44,10 +52,29 @@ public class ProjectileHitEvent implements Listener {
                         shooter.teleport(arrow.getLocation());
                         break;
 
-										case TREE:
-												TreeType[] treeTypes = TreeType.values();
-												int tree = (new Random()).nextInt(treeTypes.length);
+                    case TREE:
+						TreeType[] treeTypes = TreeType.values();
+						int tree = (new Random()).nextInt(treeTypes.length);
                         arrow.getWorld().generateTree(arrow.getLocation(), treeTypes[tree]);
+                        break;
+
+                    case ICE:
+                        Block middle = arrow.getWorld().getBlockAt(arrow.getLocation());
+
+                        int radius = 2;
+                        middle.setType(Material.ICE);
+                        for (int x = radius; x >= -radius; x--) {
+                            for (int y = radius; y >= -radius; y--) {
+                                for (int z = radius; z >= -radius; z--) {
+                                    middle.getRelative(x, y, z).setType(Material.ICE);
+                                }
+                            }
+                        }
+                        break;
+
+                    case LAVA:
+                        Block block = arrow.getWorld().getBlockAt(arrow.getLocation());
+                        block.setType(Material.STATIONARY_LAVA);
                         break;
                 }
             }

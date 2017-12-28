@@ -38,7 +38,7 @@ public class Build {
                     Wall.build(target, length);
 
                 } else if (args[0].equalsIgnoreCase("chest")) {
-                    RandomChest.build(player.getLocation(), target);
+                    RandomChest.build(player, target);
 
                 } else if (args[0].equalsIgnoreCase("fort")) {
                     Material [][] level00 = {

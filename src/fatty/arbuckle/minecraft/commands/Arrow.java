@@ -51,6 +51,9 @@ public class Arrow {
 			for (ArrowType t : Configuration.ArrowType.values()) {
 				arrowTypeList += t.toString() + " ";
 			}
+//			for (PotionEffectType p : PotionEffectType.values()) {
+//				arrowTypeList += p.toString() + " ";
+//			}
 			sender.sendMessage("Arrow type must be one of: " + arrowTypeList);
 
 //			arrowTypeList = "";
