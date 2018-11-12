@@ -20,11 +20,11 @@ public class Equip {
 		PlayerUtil.addIfDoesnt(inventory, Material.DIAMOND_AXE, 1);
 		PlayerUtil.addIfDoesnt(inventory, Material.DIAMOND_PICKAXE, 1);
 		PlayerUtil.addIfDoesnt(inventory, Material.DIAMOND_SWORD, 1);
-		PlayerUtil.addIfDoesnt(inventory, Material.DIAMOND_SPADE, 1);
+		// PlayerUtil.addIfDoesnt(inventory, Material.DIAMOND_SPADE, 1);
 		inventory.addItem(new ItemStack(Material.ARROW, 64));
 		inventory.addItem(new ItemStack(Material.ARROW, 64));
 		PlayerUtil.addIfDoesnt(inventory, Material.COOKED_MUTTON, 64);
-		PlayerUtil.addIfDoesnt(inventory, Material.SADDLE, 64);
+		PlayerUtil.addIfDoesnt(inventory, Material.SADDLE, 1);
 
 		inventory.setHelmet(new ItemStack(Material.LEATHER_HELMET));
 		inventory.setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE));

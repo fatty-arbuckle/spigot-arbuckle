@@ -7,8 +7,8 @@
     </exec>
 
     <path id="classpath.base">
-        <fileset dir="/home/phatty/Desktop/Spigot/build/1.12.1/Spigot/Spigot-API/target">
-            <include name="spigot-api-1.12.2-R0.1-SNAPSHOT-shaded.jar" />
+        <fileset dir="/home/phatty/Desktop/Spigot/build/1.13.1/Spigot/Spigot-API/target">
+            <include name="spigot-api-1.13.1-R0.1-SNAPSHOT-shaded.jar" />
         </fileset>
         <fileset dir="/home/phatty/.m2/repository/junit/junit/4.11/">
             <include name="junit-4.11.jar" />

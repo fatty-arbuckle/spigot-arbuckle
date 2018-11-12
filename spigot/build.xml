@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Fatty.Arbuckle" default="makejar" basedir=".">
+
+    <exec executable="git" outputproperty="git.branch"
+          failifexecutionfails="false">
+        <arg line="rev-parse --abbrev-ref HEAD"/>
+    </exec>
+
+    <path id="classpath.base">
+        <fileset dir="/home/phatty/.m2/repository/org/spigotmc/spigot-api/1.11-R0.1-SNAPSHOT">
+            <include name="spigot-api-1.11-R0.1-SNAPSHOT-shaded.jar" />
+        </fileset>
+        <fileset dir="/home/phatty/.m2/repository/junit/junit/4.11/">
+            <include name="junit-4.11.jar" />
+        </fileset>
+    </path>
+
+    <target name="compile">
+        <javac srcdir="src" destdir="out" includes="**/*.java" target="1.8">
+            <classpath refid="classpath.base" />
+        </javac>
+
+    </target>
+
+    <target name="makejar" description="Create a jar for the project" depends="compile">
+        <mkdir dir="target"></mkdir>
+        <jar destfile="target/${ant.project.name}-${git.branch}.jar">
+            <fileset dir="out/"></fileset>
+            <fileset file="plugin.yml"></fileset>
+        </jar>
+    </target>
+</project>

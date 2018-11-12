@@ -1,10 +1,7 @@
 package fatty.arbuckle.minecraft.commands;
 
 import fatty.arbuckle.minecraft.Configuration;
-import fatty.arbuckle.minecraft.build.Data;
-import fatty.arbuckle.minecraft.build.Drone;
-import fatty.arbuckle.minecraft.build.Wall;
-import fatty.arbuckle.minecraft.build.RandomChest;
+import fatty.arbuckle.minecraft.build.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -39,6 +36,9 @@ public class Build {
 
                 } else if (args[0].equalsIgnoreCase("chest")) {
                     RandomChest.build(player, target);
+
+                } else if (args[0].equalsIgnoreCase("machine_gun")) {
+                    MachineGun.build(player);
 
                 } else if (args[0].equalsIgnoreCase("fort")) {
                     Material [][] level00 = {
