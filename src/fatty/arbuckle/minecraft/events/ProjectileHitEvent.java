@@ -54,6 +54,8 @@ public class ProjectileHitEvent implements Listener {
                     case LIGHTNING:
                         arrow.setGlowing(false);
                         arrow.getWorld().strikeLightning(arrow.getLocation());
+												arrow.getWorld().setStorm(true);
+												arrow.getWorld().setWeatherDuration(100);
                         break;
 
                     case TELEPORT:

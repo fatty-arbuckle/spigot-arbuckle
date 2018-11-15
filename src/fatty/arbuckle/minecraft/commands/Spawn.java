@@ -27,7 +27,7 @@ public class Spawn {
 
                 EntityType entityType = EntityType.SKELETON;
                 if (args.length >= 2) {
-                    entityType = EntityType.valueOf(args[1]);
+                    entityType = EntityType.valueOf(args[1].toUpperCase());
                 }
 
 
@@ -43,7 +43,7 @@ public class Spawn {
                     spawnee.setCustomName("Sparky");
                     spawnee.setCustomNameVisible(true);
                     if (spawnee instanceof Creature) {
-                        //spawnee.setGlowing(true);
+                        // spawnee.setGlowing(true);
                         ((Creature)spawnee).setTarget(targetPlayer);
 
                     } else {
