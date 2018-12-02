@@ -42,6 +42,9 @@ public class Main extends JavaPlugin {
         } else if (command.getName().equalsIgnoreCase("spawn")) {
             return Spawn.run(sender, label, args);
 
+				} else if (command.getName().equalsIgnoreCase("steed")) {
+            return Steed.run(sender, label, args);
+
         } else {
         	return false;
         }

@@ -29,3 +29,8 @@ commands:
     usage: /spawn player [ thing ]
     permission: myplugin.spawn
     permission-message: You don't have the myplugin.build permission.
+  steed:
+    description: Summon a horse to ride into battle
+    usage: /steed player
+    permission: myplugin.steed
+    permission-message: You don't have the myplugin.steed permission.
