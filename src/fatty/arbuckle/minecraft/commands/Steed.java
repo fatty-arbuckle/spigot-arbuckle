@@ -15,18 +15,30 @@ import org.bukkit.inventory.HorseInventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Set;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
+
 
 import fatty.arbuckle.minecraft.util.PlayerUtil;
 
 public class Steed {
 
-  // TODO shared with Spawn: refactor
-  private static Location findOpenSpace(Player p) {
-      return p.getTargetBlock((Set<Material>)null, 20).getLocation();
+  private static List<String> NAMES = Arrays.asList(new String[] {
+    "Tater Trotter", "Maple Stirrup", "Usain Colt", "Hermioneigh",
+    "NeighSayer", "Trojan", "Colt Forty-Five", "Dappleganger", "Leon Trotsky"
+  });
+
+  private static int nameIndex = 0;
+
+  {
+    Collections.shuffle(NAMES);
   }
 
   private static String playerNameToHorseName(String playerName) {
-    return playerName;
+    nameIndex++;
+    nameIndex = nameIndex % NAMES.size();
+    return NAMES.get(nameIndex);
   }
 
 	public static boolean run(CommandSender sender, String label, String[] args) {
@@ -40,7 +52,7 @@ public class Steed {
 
     if (targetPlayer != null) {
       World theWorld = targetPlayer.getWorld();
-      Horse horse = (Horse)theWorld.spawnEntity(findOpenSpace(targetPlayer), EntityType.HORSE);
+      Horse horse = (Horse)theWorld.spawnEntity(PlayerUtil.findOpenSpace(targetPlayer), EntityType.HORSE);
       horse.setCustomName(playerNameToHorseName(targetPlayer.getName()));
       horse.setCustomNameVisible(true);
       horse.setAdult();

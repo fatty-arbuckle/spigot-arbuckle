@@ -8,59 +8,81 @@ import org.bukkit.entity.*;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.Set;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
+
+import fatty.arbuckle.minecraft.util.PlayerUtil;
+
 
 /**
  * Created by phatty on 7/31/16.
  */
 public class Spawn {
 
-    private static Location findOpenSpace(Player p) {
-        return p.getTargetBlock((Set<Material>)null, 20).getLocation();
-    }
+  private static List<String> NAMES = Arrays.asList(new String[] {
+    "Aragog", "Bane", "Beedle the Bard", "The Bloody Baron", "Bogrod",
+    "Buckbeak", "Sir Cadogan", "Crookshanks", "Dobby", "Errol", "Fang",
+    "Fawkes", "Firenze", "Fluffy", "Gornuk", "Grawp", "Griphook", "Hedwig",
+    "Hokey", "Kreacher", "Magorian", "Great Aunt Muriel", "Nagini",
+    "Nearly Headless Nick", "Norbert", "Peeves", "Pigwidgeon",
+    "Madam Rosmerta", "Ronan", "Scabbers", "Scabior", "Travers", "Trevor",
+    "Winky"
+  });
 
-    public static boolean run(CommandSender sender, String label, String[] args) {
-        if (args.length >= 1) {
+  private static int nameIndex = 0;
 
-            Player targetPlayer = sender.getServer().getPlayer(args[0]);
-
-            if (targetPlayer != null) {
-
-                EntityType entityType = EntityType.SKELETON;
-                if (args.length >= 2) {
-                    entityType = EntityType.valueOf(args[1].toUpperCase());
-                }
+  {
+    Collections.shuffle(NAMES);
+  }
 
 
-                int count = 10;
-                if (args.length >= 3) {
-                    count = Integer.valueOf(args[2]);
-                }
+  public static boolean run(CommandSender sender, String label, String[] args) {
+    if (args.length >= 1) {
 
-                World theWorld = targetPlayer.getWorld();
+      Player targetPlayer = sender.getServer().getPlayer(args[0]);
 
-                for (int i = 0; i < count; i++) {
-                    Entity spawnee = theWorld.spawnEntity(findOpenSpace(targetPlayer), entityType);
-                    spawnee.setCustomName("Sparky");
-                    spawnee.setCustomNameVisible(true);
-                    if (spawnee instanceof Creature) {
-                        // spawnee.setGlowing(true);
-                        ((Creature)spawnee).setTarget(targetPlayer);
+      if (targetPlayer != null) {
 
-                    } else {
-                        System.out.println("Spawned a skeleton, but dod not get a skeleton!");
-                        return false;
-                    }
-                }
-
-            } else {
-                System.out.println(args[0] + " is not a player!");
-                return false;
-            }
-        } else {
-            System.out.println("BAD ARGS!!");
-            return false;
+        EntityType entityType = EntityType.SKELETON;
+        if (args.length >= 2) {
+          entityType = EntityType.valueOf(args[1].toUpperCase());
         }
 
-        return true;
+        int count = 10;
+        if (args.length >= 3) {
+          count = Integer.valueOf(args[2]);
+        }
+
+        World theWorld = targetPlayer.getWorld();
+
+        for (int i = 0; i < count; i++) {
+          Entity spawnee = theWorld.spawnEntity(PlayerUtil.findOpenSpace(targetPlayer), entityType);
+          spawnee.setCustomName(getCreatureName());
+          spawnee.setCustomNameVisible(true);
+          if (spawnee instanceof Creature) {
+            // spawnee.setGlowing(true);
+            ((Creature)spawnee).setTarget(targetPlayer);
+          } else {
+            System.out.println("Spawned a skeleton, but dod not get a skeleton!");
+            return false;
+          }
+        }
+      } else {
+        System.out.println(args[0] + " is not a player!");
+        return false;
+      }
+    } else {
+      System.out.println("BAD ARGS!!");
+      return false;
     }
+
+    return true;
+  }
+
+  private static String getCreatureName() {
+    nameIndex++;
+    nameIndex = nameIndex % NAMES.size();
+    return NAMES.get(nameIndex);
+  }
 }

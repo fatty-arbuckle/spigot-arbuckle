@@ -1,6 +1,7 @@
 main: fatty.arbuckle.minecraft.Main
 name: Fatty.Arbuckle
 version: 0.1
+api-version: 1.13
 author: Fatty Arbuckle
 description: An test plugin
 commands:
