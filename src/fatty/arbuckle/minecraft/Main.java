@@ -11,10 +11,32 @@ public class Main extends JavaPlugin {
 
 	@Override
     public void onEnable() {
-		// side-effects: registers all of the event listeners
-		new EventRegistration(getServer().getPluginManager(), this);
+			getLogger().info("");
+			getLogger().info("     ───────████████████████████         ");
+			getLogger().info("     ────████▀────────────────▀████      ");
+			getLogger().info("     ──███▀──────────────────────▀███     ");
+			getLogger().info("  F  ─██▀──────────────────────────▀██    ");
+			getLogger().info("  A  █▀──────────────────────────────▀█   ");
+			getLogger().info("  T  █───█████────────────────█████───█   ");
+			getLogger().info("  T  █──██▓▓▓███────────────███▓▓▓██──█   ");
+			getLogger().info("  Y  █──██▓▓▓▓▓██──────────██▓▓▓▓▓██──█   ");
+			getLogger().info("     █──██▓▓▓▓▓▓██────────██▓▓▓▓▓▓██──█   ");
+			getLogger().info("     █▄──████▓▓▓▓██──────██▓▓▓▓████──▄█   ");
+			getLogger().info("  A  ▀█▄───▀███▓▓▓██────██▓▓▓███▀───██▀   ");
+			getLogger().info("  R  ──█▄────▀█████▀────▀█████▀───▄█▀     ");
+			getLogger().info("  B  ─▄██──────────▄█─█▄──────────███▄    ");
+			getLogger().info("  U  ─███──────────██─██───────────███    ");
+			getLogger().info("  C  ─███──────────────────────────███    ");
+			getLogger().info("  K  ──▀██──██▀██──█──█──█──██▀██──██▀    ");
+			getLogger().info("  L  ────▀███▀─██──█──█──█──██──████▀     ");
+			getLogger().info("  E  ─────▀█▀──██──█──█──█──██──▀██▀      ");
+			getLogger().info("     ──────────██──█──█──█──██            ");
+			getLogger().info("     ───────────█▄▄█▄▄█▄▄█▄▄█             ");
+			getLogger().info("");
 
-        Configuration.getInstance().setDatDirectory(this.getDataFolder().getAbsolutePath());
+			// side-effects: registers all of the event listeners
+			new EventRegistration(getServer().getPluginManager(), this);
+      Configuration.getInstance().setDatDirectory(this.getDataFolder().getAbsolutePath());
     }
 
     @Override
